@@ -21,7 +21,7 @@ const appStore = useAppStore();
             <div
                 class="bg-white shadow-1 border-2 border-white w-8 h-8 rounded-full relative flex justify-center items-center">
                 <!-- https://github.com/delowardev/vue3-circle-progress find progress attributes -->
-                <circle-progress :percent="appStore.guideProgress" :is-gradient="true" :border-width="20" :linecap="0" :gradient="{
+                <circle-progress :percent="appStore.guideProgress || 5" :is-gradient="true" :border-width="20" :linecap="0" :gradient="{
                     angle: 90,
                     startColor: '#40BEBE',
                     stopColor: '#2361E6'
