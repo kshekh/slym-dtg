@@ -1,0 +1,28 @@
+{
+  "name": "slym-dmtourguide",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/figtree": "^5.0.21",
+    "@fontsource-variable/manrope": "^5.0.20",
+    "@headlessui/vue": "^1.7.22",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.29",
+    "vue3-circle-progress": "^1.0.7"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1"
+  }
+}

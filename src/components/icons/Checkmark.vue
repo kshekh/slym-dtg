@@ -1,0 +1,27 @@
+<template>
+    <svg viewBox="0 0 9 6" fill="none" :class="classIcon" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M7.87238 0.47789C8.16073 0.775253 8.15343 1.25007 7.85606 1.53842L3.73108 5.53842C3.44017 5.82052 2.97778 5.82053 2.68687 5.53843L0.811849 3.72026C0.514483 3.43191 0.507174 2.95709 0.795525 2.65972C1.08388 2.36236 1.55869 2.35505 1.85606 2.6434L3.20897 3.95529L6.81184 0.461576C7.10921 0.173223 7.58402 0.180527 7.87238 0.47789Z"
+            fill="url(#paint0_linear_2043_56)" />
+        <defs>
+            <linearGradient id="paint0_linear_2043_56" x1="-0.96008" y1="-1.28134" x2="8.44743" y2="-0.891223"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#40BEBE" />
+                <stop offset="1" stop-color="#2361E6" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+</template>
+
+<script>
+export default {
+    name: 'Checkmark',
+    props: {
+        classIcon: {
+            type: String,
+
+        }
+    }
+}
+</script>
