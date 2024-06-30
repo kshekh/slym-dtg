@@ -1,12 +1,11 @@
 <template>
     <svg viewBox="0 0 18 18" fill="none" :class="classIcon" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5ZM9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18Z" fill="url(#paint0_linear_2038_51)"/>
-<defs>
-<linearGradient id="paint0_linear_2038_51" x1="-3.70568" y1="-5.01167" x2="18.8903" y2="-4.32451" gradientUnits="userSpaceOnUse">
-<stop stop-color="#40BEBE"/>
-<stop offset="1" stop-color="#2361E6"/>
+        <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-4.1197" y1="11.399" x2="18.4763" y2="10.7118" gradientTransform="matrix(1 0 0 -1 0 20)">
+	<stop  offset="0" style="stop-color:#40BEBE"/>
+	<stop  offset="1" style="stop-color:#2361E6"/>
 </linearGradient>
-</defs>
+<path class="st0" d="M9,16.5c4.1,0,7.5-3.4,7.5-7.5c0-4.1-3.4-7.5-7.5-7.5C4.9,1.5,1.5,4.9,1.5,9C1.5,13.1,4.9,16.5,9,16.5z M9,18
+	c5,0,9-4,9-9c0-5-4-9-9-9C4,0,0,4,0,9C0,14,4,18,9,18z"/>
     </svg>
 
 </template>
@@ -22,3 +21,6 @@ export default {
     }
 }
 </script>
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
+</style>
