@@ -83,13 +83,13 @@ const completedXp = ref(false);
 
                   <div class="flex-1 space-y-2">
                     <div class="flex justify-between gap-2 items-center flex-1">
-                      <div class="flex gap-1 text-gray-900 items-center">
-                        <h3 class="font-bold text-left "
-                          :class="appStore.guideStepsCompleted >= 1 ? 'line-through' : ''">Create more inbox</h3>
-                        <a href="/#" class="hover:text-sky ease-in-out duration-200">
+                      
+                        <h3 class="font-bold text-left text-gray-900"
+                          :class="appStore.guideStepsCompleted >= 1 ? 'line-through' : ''">Create more inbox
+                         <a href="/#" class="hover:text-sky ease-in-out duration-200 inline-flex">
                           <LinkClick :classIcon="'w-3 h-3'" />
-                        </a>
-                      </div>
+                        </a></h3>
+                    
                       <p class="text-transparent bg-clip-text bg-text-gradient font-extrabold whitespace-nowrap"><span
                           class="inline-flex">
                           <Checkmark :classIcon="'w-3 h-3 relative top-0.5'" v-if="appStore.guideStepsCompleted >= 1" />
@@ -124,13 +124,13 @@ const completedXp = ref(false);
 
                   <div class="flex-1 space-y-2">
                     <div class="flex justify-between gap-2 items-center flex-1">
-                      <div class="flex gap-1 text-gray-900 items-center">
-                        <h3 class="font-bold text-left" :class="appStore.guideStepsCompleted === 2 ? 'line-through' : ''">
-                          Manage your messaging rules</h3>
-                        <a href="/#" class="hover:text-sky ease-in-out duration-200">
+                       
+                        <h3 class="font-bold text-left text-gray-900" :class="appStore.guideStepsCompleted === 2 ? 'line-through' : ''">
+                          Manage your messaging rules <a href="/#" class="hover:text-sky ease-in-out duration-200 inline-flex">
                           <LinkClick :classIcon="'w-3 h-3'" />
-                        </a>
-                      </div>
+                        </a></h3>
+                        
+                       
                       <p class="text-transparent bg-clip-text bg-text-gradient font-extrabold whitespace-nowrap"><span
                           class="inline-flex">
                           <Checkmark :classIcon="'w-3 h-3 relative top-0.5'"
