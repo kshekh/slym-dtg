@@ -18,7 +18,7 @@ const appStore = useAppStore();
     >
       <div class="flex justify-center -mb-8">
         <img
-          src="../../assets/icons/earned-shining.svg"
+          src="/images/earned-shining.svg"
           alt="earned-shining"
           class="w-48"
         />

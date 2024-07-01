@@ -20,7 +20,7 @@ const appStore = useAppStore();
       leave-to-class="transform opacity-0"
     >
       <div class="flex justify-center -mb-2">
-        <img src="../../assets/icons/completed-shining.svg" alt="earned-shining" class="w-48" />
+        <img src="/images/completed-shining.svg" alt="earned-shining" class="w-48" />
       </div>
     </transition>
     <h3 class="text-2xl font-bold text-center text-gray-900">

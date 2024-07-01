@@ -41,7 +41,7 @@ const openCompleteXPModal = () => {
                   class="flex flex-col sm:flex-row gap-5 items-center justify-center sm:justify-between"
                 >
                   <div class="flex gap-1">
-                    <img src="../assets/icons/ai.svg" class="w-5 h-5 shrink-0" alt="">
+                    <img src="/images/ai.svg" class="w-5 h-5 shrink-0" alt="">
                     <h1
                       class="text-transparent bg-clip-text bg-text-gradient font-extrabold text-2xl text-left"
                     >
