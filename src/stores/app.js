@@ -4,6 +4,7 @@ export const useAppStore = defineStore("appStore", {
   state: () => ({
     guideProgress: 0, // Progress in percentage.
     guideStepsCompleted: 0, // Number of steps completed.
+    isSuccessVisible: false,
   }),
   actions: {
     setProgress(progress) {
@@ -19,6 +20,16 @@ export const useAppStore = defineStore("appStore", {
       this.guideStepsCompleted++;
       // Incrementing the steps will increase the progress by 50%.
       this.setProgress((this.guideStepsCompleted / 2) * 100);
+    },
+    setSteps(steps) {
+      this.guideStepsCompleted = steps;
+      this.setProgress((this.guideStepsCompleted / 2) * 100);
+    },
+    showSuccess() {
+      this.isSuccessVisible = true;
+    },
+    hideSuccess() {
+      this.isSuccessVisible = false;
     },
   },
 });

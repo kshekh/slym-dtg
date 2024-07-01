@@ -1,6 +1,6 @@
 <script setup>
-import Angleleft from './icons/AngleLeft.vue'
-import MenuIcon from './icons/MenuIcon.vue'
+import Angleleft from '../icons/AngleLeft.vue'
+import MenuIcon from '../icons/MenuIcon.vue'
 import Leftside from './Leftside.vue'
 import { ref } from 'vue'
  
@@ -32,7 +32,7 @@ const isShowing = ref(false)
             <img src="/images/ben-yaala-khalil_1716547853.jpg.png" alt="user" />
           </div>
         </div>
-        <button @click="isShowing = true"
+        <button @click="isShowing = !isShowing"
           class="shrink-0 flex lg:hidden items-center justify-center cursor-pointer w-10 h-10  ease-in-out duration-200">
           <MenuIcon :classIcon="'h-6 w-6 shrink-0'" />
         </button>
@@ -53,8 +53,6 @@ const isShowing = ref(false)
     <div class="fixed inset-0 bg-white/30 transition-opacity backdrop-blur-xl"  @click="isShowing = false" />
     <div class="bg-white max-w-[380px] shadow-card flex-col flex h-full w-[calc(100%-50px)] flex-1 relative right-0" >
       <Leftside />
-    
-    
     </div>
   </div>
     </transition>
