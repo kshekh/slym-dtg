@@ -9,7 +9,7 @@ const appStore = useAppStore();
 </script>
 <template>
 
-    <div class="bg-white rounded  lg:w-1/3 max-w-[380px] rounded-l-2xl rounded-r-lg shadow-card flex-col hidden lg:flex ">
+    
         <div class="overflow-auto space-y-6 p-3 lg:p-5 scrollbar">
         <div class="bg-main rounded-xl px-3 py-2 flex justify-between">
             <div class="flex gap-4 items-center"> 
@@ -21,7 +21,7 @@ const appStore = useAppStore();
             <div
                 class="bg-white shadow-1 border-2 border-white w-8 h-8 rounded-full relative flex justify-center items-center">
                 <!-- https://github.com/delowardev/vue3-circle-progress find progress attributes -->
-                <circle-progress :percent="appStore.guideProgress || 5" :is-gradient="true" :border-width="20" :linecap="0" :gradient="{
+                <circle-progress :percent="appStore.guideProgress" :is-gradient="true" :border-width="20" :linecap="0" :gradient="{
                     angle: 90,
                     startColor: '#40BEBE',
                     stopColor: '#2361E6'
@@ -40,6 +40,7 @@ const appStore = useAppStore();
             <h4 class="font-bold text-gray-400 uppercase text-mv tracking-widest px-4">Advanced Messages</h4>
             <AdvancedMessage />
         </div>
-    </div></div>
+    </div>
+ 
 
 </template>

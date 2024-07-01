@@ -16,10 +16,13 @@ import { useAppStore } from './../stores/app';
 
 const appStore = useAppStore();
 
-const createInbox = ref(false);
-const manageMessage = ref(false);
+
 const earnedXp = ref(false);
 const completedXp = ref(false);
+
+
+
+
 
 </script>
 
@@ -29,8 +32,10 @@ const completedXp = ref(false);
 
     <Navbar pageTitle="Messages" />
     <div class="flex-1 flex overflow-hidden p-5 pt-0 gap-3">
-      <Leftside />
-
+      <div
+        class="bg-white rounded lg:w-1/3 max-w-[380px] rounded-l-2xl rounded-r-lg shadow-card flex-col hidden lg:flex ">
+        <Leftside />
+      </div>
       <div
         class="flex flex-1 flex-col items-center lg:shadow-card lg:bg-white/40 lg:rounded-r-2xl lg:rounded-l-lg lg:backdrop-blur-md ">
         <div class="overflow-auto space-y-6 sm:p-3 lg:p-5 flex items-center flex-col w-full scrollbar ">
@@ -49,7 +54,8 @@ const completedXp = ref(false);
                       <img src="../assets/icons/Reward.svg" class="w-12 h-12" alt="icon" />
                     </div>
                     <div class="relative">
-                      <p class="text-transparent bg-clip-text bg-text-gradient font-bold text-sm text-left">You earned
+                      <p class="text-transparent bg-clip-text bg-text-gradient font-extrabold text-sm text-left">You
+                        earned
                         20 500</p>
                       <p class="text-gray-800 text-mv font-bold">Total XP to earn : 12 000</p>
                       <div class="shrink-0 absolute -right-3 -top-3">
@@ -59,9 +65,9 @@ const completedXp = ref(false);
                   </div>
                 </div>
                 <!-- Progress bar -->
-                <div class="bg-white rounded-full p-1 drop-shadow-1 backdrop-blur-md">
+                <div class="bg-white rounded-full p-1 drop-shadow-1 backdrop-blur-md" v-if="appStore.guideProgress > 0">
                   <div class="bg-text-gradient rounded-full h-2 duration-500 ease-in-out"
-                    :style="`width: ${appStore.guideProgress || 5}%`"></div>
+                    :style="`width: ${appStore.guideProgress}%`"></div>
                 </div>
               </div>
 
@@ -73,27 +79,41 @@ const completedXp = ref(false);
                   <img src="/images/step-1.png" alt="step-1" />
                 </div>
 
-                <div class="flex justify-between gap-2 cursor-pointer" @click="() => {
-                  if (appStore.guideStepsCompleted < 1) {
-                    createInbox = true
-                  }
-                }">
-                  <Checkbox v-if="appStore.guideStepsCompleted >= 1" :classIcon="'w-5 h-5 shrink-0'" />
-                  <Ring v-else :classIcon="'w-5 h-5 shrink-0'" />
 
+
+                <div class="flex justify-between gap-2 cursor-pointer" v-if="appStore.guideStepsCompleted === 1">
+                  <Checkbox :classIcon="'w-5 h-5 shrink-0'" @click="() => { appStore.incrementSteps(-1) }" />
                   <div class="flex-1 space-y-2">
                     <div class="flex justify-between gap-2 items-center flex-1">
-                      
-                        <h3 class="font-bold text-left text-gray-900"
-                          :class="appStore.guideStepsCompleted >= 1 ? 'line-through' : ''">Create more inbox
-                         <a href="/#" class="hover:text-sky ease-in-out duration-200 inline-flex">
+                      <h3 class="font-bold text-left text-gray-900 line-through">Create more inbox
+                        <a href="/#" class="hover:text-sky ease-in-out duration-200 inline-flex ml-1">
                           <LinkClick :classIcon="'w-3 h-3'" />
-                        </a></h3>
-                    
+                        </a>
+                      </h3>
                       <p class="text-transparent bg-clip-text bg-text-gradient font-extrabold whitespace-nowrap"><span
                           class="inline-flex">
-                          <Checkmark :classIcon="'w-3 h-3 relative top-0.5'" v-if="appStore.guideStepsCompleted >= 1" />
-                          <span v-else>+</span>
+                          <Checkmark :classIcon="'w-3 h-3 relative top-0.5'" />
+                        </span> 500 <small class="text-xs">XP</small></p>
+                    </div>
+                    <p class="text-xs text-gray-500">Create more inbox, welcome your new contact by a message</p>
+                  </div>
+
+                </div>
+
+
+                <div class="flex justify-between gap-2" v-else>
+                  <Ring :classIcon="'w-5 h-5 shrink-0 cursor-pointer'"
+                    @click="() => { if (appStore.guideStepsCompleted < 1) { earnedXp = true; } }" />
+                  <div class="flex-1 space-y-2">
+                    <div class="flex justify-between gap-2 items-center flex-1">
+                      <h3 class="font-bold text-left text-gray-900">Create more inbox
+                        <a href="/#" class="hover:text-sky ease-in-out duration-200 inline-flex ml-1">
+                          <LinkClick :classIcon="'w-3 h-3'" />
+                        </a>
+                      </h3>
+                      <p class="text-transparent bg-clip-text bg-text-gradient font-extrabold whitespace-nowrap"><span
+                          class="inline-flex">
+                          <span>+</span>
                         </span> 500 <small class="text-xs">XP</small></p>
                     </div>
                     <p class="text-xs text-gray-500">Create more inbox, welcome your new contact by a message</p>
@@ -116,7 +136,7 @@ const completedXp = ref(false);
 
                 <div class="flex justify-between gap-2 cursor-pointer" @click="() => {
                   if (appStore.guideStepsCompleted < 2) {
-                    manageMessage = true
+                    completedXp = true
                   }
                 }">
                   <Checkbox v-if="appStore.guideStepsCompleted === 2" :classIcon="'w-5 h-5 shrink-0'" />
@@ -124,13 +144,15 @@ const completedXp = ref(false);
 
                   <div class="flex-1 space-y-2">
                     <div class="flex justify-between gap-2 items-center flex-1">
-                       
-                        <h3 class="font-bold text-left text-gray-900" :class="appStore.guideStepsCompleted === 2 ? 'line-through' : ''">
-                          Manage your messaging rules <a href="/#" class="hover:text-sky ease-in-out duration-200 inline-flex">
+
+                      <h3 class="font-bold text-left text-gray-900"
+                        :class="appStore.guideStepsCompleted === 2 ? 'line-through' : ''">
+                        Manage your messaging rules <a href="/#"
+                          class="hover:text-sky ease-in-out duration-200 inline-flex ml-1">
                           <LinkClick :classIcon="'w-3 h-3'" />
                         </a></h3>
-                        
-                       
+
+
                       <p class="text-transparent bg-clip-text bg-text-gradient font-extrabold whitespace-nowrap"><span
                           class="inline-flex">
                           <Checkmark :classIcon="'w-3 h-3 relative top-0.5'"
@@ -153,64 +175,23 @@ const completedXp = ref(false);
 
   </div>
 
-  <!-- createInbox Modal -->
-  <HeadlessModal :isVisible="createInbox" :modalSize="'max-w-[340px]'" @close="createInbox = false">
-    <h2 class="text-base font-bold mb-2">Claim Task</h2>
-    <div class="p-5 flex gap-8">
-      <div class="flex flex-col items-end">
-        <Checkbox :classIcon="'w-16 h-16'" />
-        <CheckboxColor :classIcon="'w-8 h-8 text-green-500 -mt-4 -mr-2'" />
-      </div>
-      <div class="space-y-2">
-        <h3 class="text-base font-bold">Create more inbox</h3>
-        <p class="font-bold"><span class="leading-3 text-gray-500">You'll gain:</span>
-          <span class="block text-transparent bg-clip-text bg-text-gradient font-extrabold">500 XP</span>
-        </p>
-      </div>
-    </div>
-    <button @click="() => {
-      earnedXp = true;
-      appStore.incrementSteps();
-    }"
-      class="w-full bg-primary hover:opacity-85 bg-gradient-primary ease-in-out duration-200 rounded-xl px-5 font-extrabold leading-[48px] shadow-button text-white">Claim
-      Task</button>
-  </HeadlessModal>
-
-  <!-- manageMessage Modal -->
-  <HeadlessModal :isVisible="manageMessage" :modalSize="'max-w-[340px]'" @close="manageMessage = false">
-    <h2 class="text-base font-bold mb-2">Claim Task</h2>
-    <div class="p-5 flex gap-8">
-      <div class="flex flex-col items-end">
-        <Checkbox :classIcon="'w-16 h-16'" />
-        <CheckboxColor :classIcon="'w-8 h-8 text-green-500 -mt-4 -mr-2'" />
-      </div>
-      <div class="space-y-2">
-        <h3 class="text-base font-bold">Manage your messaging rules</h3>
-        <p class="font-bold"><span class="leading-3 text-gray-500">You'll gain:</span>
-          <span class="block text-transparent bg-clip-text bg-text-gradient font-extrabold">100 XP</span>
-        </p>
-      </div>
-    </div>
-    <button @click="() => {
-      completedXp = true;
-      appStore.incrementSteps();
-    }"
-      class="w-full bg-primary hover:opacity-85 bg-gradient-primary ease-in-out duration-200 rounded-xl px-5 font-extrabold leading-[48px] shadow-button text-white">Claim
-      Task</button>
-  </HeadlessModal>
 
 
   <!-- Earned XP Modal -->
   <HeadlessModal :isVisible="earnedXp" :modalSize="'max-w-[463px]'" @close="earnedXp = false">
     <div class="space-y-5">
-      <div class="flex justify-center -mb-8">
-        <img src="../assets/icons/earned-shining.svg" alt="earned-shining" class="w-48" />
-      </div>
+      <transition enter-active-class="duration-300 ease-out" enter-from-class="transform opacity-0 scale-90"
+        enter-to-class="opacity-100 scale-100" leave-active-class="duration-200 ease-in"
+        leave-from-class="opacity-100 scale-100" leave-to-class="transform opacity-0 scale-90">
+        <div class="flex justify-center -mb-8">
+          <img src="../assets/icons/earned-shining.svg" alt="earned-shining" class="w-48" />
+        </div>
+      </transition>
       <h3 class="text-2xl font-bold text-center text-gray-900">Congratulations You’ve Earned</h3>
       <p class="text-2xl text-center"><span class="text-transparent bg-clip-text bg-text-gradient font-extrabold">500
           XP</span></p>
 
-      <button @click="earnedXp = false"
+      <button @click="earnedXp = false; appStore.incrementSteps();"
         class="w-full hover:opacity-85 bg-text-gradient ease-in-out duration-200 rounded-xl px-5 font-extrabold leading-[48px] shadow-button text-white">Yeahhhhhhhhhhh
         !</button>
     </div>
@@ -220,9 +201,13 @@ const completedXp = ref(false);
   <!-- completed XP Modal -->
   <HeadlessModal :isVisible="completedXp" :modalSize="'max-w-[463px]'" @close="completedXp = false">
     <div class="space-y-5">
-      <div class="flex justify-center -mb-2">
-        <img src="../assets/icons/completed-shining.svg" alt="earned-shining" class="w-48" />
-      </div>
+      <transition enter-active-class="duration-300 ease-out" enter-from-class="transform opacity-0"
+        enter-to-class="opacity-100" leave-active-class="duration-200 ease-in" leave-from-class="opacity-100"
+        leave-to-class="transform opacity-0">
+        <div class="flex justify-center -mb-2">
+          <img src="../assets/icons/completed-shining.svg" alt="earned-shining" class="w-48" />
+        </div>
+      </transition>
       <h3 class="text-2xl font-bold text-center text-gray-900">Congratulations You’ve completed</h3>
       <p class="text-2xl text-center"><span class="text-transparent bg-clip-text bg-text-gradient font-extrabold">DM
           Tour guide</span></p>
@@ -235,7 +220,7 @@ const completedXp = ref(false);
           <img src="../assets/icons/earned-badge.svg" alt="earned-shining" class="w-10 h-5" />
         </div>
       </div>
-      <button @click="completedXp = false"
+      <button @click="completedXp = false; appStore.incrementSteps();"
         class="w-full hover:opacity-85 bg-text-gradient ease-in-out duration-200 rounded-xl px-5 font-extrabold leading-[48px] shadow-button text-white">Done</button>
     </div>
 
